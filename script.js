@@ -6,18 +6,18 @@ export const options = {
   scenarios: {
     browser: {
       executor: 'per-vu-iterations',
-      exec: 'browser'
+      exec: 'browserTest'
     },
     protocol: {
       executor: 'constant-vus',
-      exec: 'protocol',
+      exec: 'protocolTest',
       vus: 20,
       duration: '30s',
     },
   }
 }
 
-export async function browser() {
+export async function browserTest() {
   const browser = chromium.launch({ headless: false });
   const page = browser.newPage();
 
@@ -41,7 +41,7 @@ export async function browser() {
   browser.close();
 }
 
-export function protocol() {
+export function protocolTest() {
   const res = http.get('https://otel-demo.field-eng.grafana.net/');
 
   check(res, {
