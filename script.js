@@ -12,39 +12,38 @@ export const options = {
       executor: 'constant-vus',
       exec: 'protocolTest',
       vus: 20,
-      duration: '30s',
-    },
+      duration: '30s'
+    }
   }
 }
-
 export async function browserTest() {
-  const browser = chromium.launch({ headless: false });
-  const page = browser.newPage();
+  const browser = chromium.launch({ headless: false })
+  const page = browser.newPage()
 
-  await page.goto('https://otel-demo.field-eng.grafana.net/');
+  await page.goto('https://otel-demo.field-eng.grafana.net/')
 
-  const productCard = page.locator('(//div[@data-cy="product-card"])[1]');
-  await productCard.click();
+  const productCard = page.locator('(//div[@data-cy="product-card"])[1]')
+  productCard.click()
 
-  const quantityOption = page.locator('[data-cy="product-quantity"]');
-  quantityOption.selectOption('3');
+  const quantityOption = page.locator('[data-cy="product-quantity"]')
+  quantityOption.selectOption('3')
 
-  const addToCartBtn = page.locator('[data-cy="product-add-to-cart"]');
-  await addToCartBtn.click();
-  
+  const addToCardBtn = page.locator('[data-cy="product-add-to-cart"]')
+  addToCardBtn.click() 
+
   check(page, {
-    'cart item name': page => page.locator('//p[text()="National Park Foundation Explorascope"]').isVisible() == true,
-    'cart item quantity': page => page.locator('//p[text()="3"]').isVisible() == true,
+    'cart item name': page => page.locator('//p[text()="National Park Foundation Explorascope"]').isVisible() === true,
+    'cart item quantity': page => page.locator('//p[text()="3"]').isVisible() === true
   })
 
-  page.close();
-  browser.close();
+  page.close()
+  browser.close()
 }
 
 export function protocolTest() {
-  const res = http.get('https://otel-demo.field-eng.grafana.net/');
+  const res = http.get('https://otel-demo.field-eng.grafana.net/')
 
   check(res, {
-    'status is 200': res => res.status === 200,
-  });
+    'status is 200': res => res.status === 200
+  })
 }
