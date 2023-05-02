@@ -1,6 +1,6 @@
 # k6-browser-demo
 
-A simple project to demonstrate the latest version (v0.43.1) of k6 and k6 browser.
+A simple project to demonstrate the latest version (v0.44.0) of k6 and k6 browser.
 
 ## Prerequisites
 
