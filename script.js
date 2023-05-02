@@ -23,13 +23,13 @@ export async function browserTest() {
   await page.goto('https://otel-demo.field-eng.grafana.net/')
 
   const productCard = page.locator('(//div[@data-cy="product-card"])[1]')
-  productCard.click()
+  await productCard.click()
 
   const quantityOption = page.locator('[data-cy="product-quantity"]')
   quantityOption.selectOption('3')
 
   const addToCardBtn = page.locator('[data-cy="product-add-to-cart"]')
-  addToCardBtn.click() 
+  await addToCardBtn.click()
 
   check(page, {
     'cart item name': page => page.locator('//p[text()="National Park Foundation Explorascope"]').isVisible() === true,
