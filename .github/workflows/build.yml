@@ -1,18 +1,19 @@
-name: Main Workflow
+name: k6 test
 on: [push]
+
+env:
+  K6_BROWSER_ENABLED: true
+
 jobs:
   performance-test:
     name: Run k6 test
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v2
-      - name: Run k6 browser local test
+        uses: actions/checkout@v3
+
+      - name: Run k6 local test
         uses: grafana/k6-action@v0.3.0
         with:
           filename: script.js
-          flags: --env K6_BROWSER_ENABLED=true
-          cloud: true
-          token: ${{ secrets.K6_CLOUD_API_TOKEN }}
-        env:
-          K6_BROWSER_ENABLED: true
