@@ -4,6 +4,9 @@ jobs:
   performance-test:
     name: Run k6 test
     runs-on: ubuntu-latest
+    env:
+      K6_BROWSER_ENABLED: true 
+
     steps:
       - name: Checkout
         uses: actions/checkout@v2
