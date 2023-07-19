@@ -1,0 +1,14 @@
+name: Main Workflow
+on: [push]
+jobs:
+  performance-test:
+    name: Run k6 test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Run k6 browser local test
+        uses: grafana/k6-action@v0.3.0
+        with:
+          filename: script.js
+          flags: --env K6_BROWSER_ENABLED=true
