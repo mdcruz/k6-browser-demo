@@ -17,7 +17,7 @@ export const options = {
   }
 }
 export async function browserTest() {
-  const browser = chromium.launch({ headless: false })
+  const browser = chromium.launch()
   const page = browser.newPage()
 
   await page.goto('https://otel-demo.field-eng.grafana.net/')
