@@ -15,3 +15,5 @@ jobs:
         with:
           filename: script.js
           flags: --env K6_BROWSER_ENABLED=true
+          cloud: true
+          token: ${{ secrets.K6_CLOUD_API_TOKEN }}
