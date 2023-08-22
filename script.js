@@ -1,4 +1,4 @@
-import { chromium } from 'k6/experimental/browser'
+import { browser } from 'k6/experimental/browser'
 import { check } from 'k6'
 import http from 'k6/http'
 
@@ -6,7 +6,12 @@ export const options = {
   scenarios: {
     browser: {
       executor: 'per-vu-iterations',
-      exec: 'browserTest'
+      exec: 'browserTest',
+      options: {
+        browser: {
+          type: 'chromium'
+        }
+      }
     },
     protocol: {
       executor: 'constant-vus',
@@ -16,8 +21,8 @@ export const options = {
     }
   }
 }
+
 export async function browserTest() {
-  const browser = chromium.launch({ headless: false })
   const page = browser.newPage()
 
   await page.goto('https://otel-demo.field-eng.grafana.net/')
@@ -37,7 +42,6 @@ export async function browserTest() {
   })
 
   page.close()
-  browser.close()
 }
 
 export function protocolTest() {
